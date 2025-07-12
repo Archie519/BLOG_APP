@@ -1,9 +1,10 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Posts
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from .import models 
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -76,4 +77,27 @@ def mypost(request):
 def signout(request):
     logout(request)
     return redirect('/login')
+
+
+def update_blog(request, blog_id):
+    post = get_object_or_404(Posts, id=blog_id, author=request.user)
+    if request.method == 'POST':
+        post.title = request.POST['title']
+        post.content = request.POST['content']
+        post.save()
+        return redirect('/home')
+    return render(request, 'blog/update_blog.html', {'blog': post})
+
+
+
+def delete_blog(request, blog_id):
+    post = get_object_or_404(Posts, id=blog_id, author=request.user)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('/home')
+    return render(request, 'blog/delete_blog.html', {'blog': post})
+
+
+
+
 

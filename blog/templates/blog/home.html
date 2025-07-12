@@ -27,6 +27,7 @@
                     <li><a class="dropdown-item" href="/newpost">New Post</a></li>
                     <li><a class="dropdown-item" href="/mypost">My Post</a></li>
                     <li><a class="dropdown-item" href="/signout">Sign Out</a></li>
+                   
                 </ul>
             </div>
         </div>
@@ -43,6 +44,8 @@
                 <h3>{{post.title}}</h3>
                 
                 <p class="article-content">{{post.content}}</p>
+                <a href="{% url 'update_blog' post.id %}" class="btn btn-sm btn-outline-primary">Edit</a>
+<a href="{% url 'delete_blog' post.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
                 <br><br>
             </div>
         </article>
