@@ -1,0 +1,103 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    body {
+        background: linear-gradient(to right, #1f4037, #99f2c8); /* Screen background */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .card {
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.85);  /* Different box container background */
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        color: #333;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        background-color: #f3f3f3;
+        border: 1px solid #ccc;
+        color: #333;
+    }
+
+    .form-control::placeholder {
+        color: #999;
+    }
+
+    .form-control:focus {
+        box-shadow: 0 0 8px #80ffaa;
+        border-color: #80ffaa;
+        background-color: #fff;
+        color: #000;
+    }
+
+    .btn-color {
+        background: linear-gradient(to right, #00b09b, #96c93d);
+        color: white;
+        font-weight: bold;
+        border: none;
+        transition: 0.3s ease-in-out;
+    }
+
+    .btn-color:hover {
+        transform: scale(1.05);
+        background: linear-gradient(to right, #43e97b, #38f9d7);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .profile-image-pic {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid #00b09b;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .cardbody-color {
+        background: transparent;
+    }
+
+    .form-text a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .form-text a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <br><br><br><br>
+            <div class="card my-5">
+
+                <form class="card-body cardbody-color p-lg-5" method="post">
+                    {% csrf_token %}
+                    <div class="text-center">
+                        <img src="https://tse3.mm.bing.net/th/id/OIP.NFtUxNtz4FxQm6pLP2LFPQHaHa?pid=Api&P=0&h=180" class="img-fluid profile-image-pic my-3" alt="profile">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" placeholder="Username" name="uname">
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" placeholder="Password" name="upassword">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-color px-5 mb-5 w-100">LOGIN</button>
+                    </div>
+                    <div class="form-text text-center mb-5">
+                        Not Registered? <a href="/signup" class="fw-bold">Create an Account</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
